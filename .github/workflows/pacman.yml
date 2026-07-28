@@ -13,15 +13,16 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: manikeshmk/galaga-contribution-graph@main
+      - uses: actions/checkout@v4
+
+      - uses: Manikeshmk/galaga-contribution-graph@main
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Move output
+      - name: Prepare output
         run: |
-          mkdir -p dist
-          cp ${{ github.action_path }}/../manikeshmk-galaga-contribution-graph/dist/galaga.svg dist/galaga-contribution-graph.svg || cp */dist/galaga.svg dist/galaga-contribution-graph.svg || find / -name "galaga.svg" 2>/dev/null | head -1 | xargs -I{} cp {} dist/galaga-contribution-graph.svg
-          cp dist/galaga-contribution-graph.svg dist/galaga-contribution-graph-dark.svg
+          cp dist/galaga.svg dist/galaga-contribution-graph.svg
+          cp dist/galaga.svg dist/galaga-contribution-graph-dark.svg
         shell: bash
 
       - uses: crazy-max/ghaction-github-pages@v4
