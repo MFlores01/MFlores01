@@ -13,11 +13,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: Platane/snk/svg-only@v3
+      - uses: Platane/snk@v3
         with:
           github_user_name: MFlores01
           outputs: |
-            dist/galaga-contribution-graph.svg?game=galaga
+            dist/galaga-contribution-graph.svg?palette=github&game=galaga
             dist/galaga-contribution-graph-dark.svg?palette=github-dark&game=galaga
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
