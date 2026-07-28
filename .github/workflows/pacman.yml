@@ -1,4 +1,4 @@
-name: Generate Pacman
+name: Generate Galaga
 
 on:
   schedule:
@@ -13,14 +13,16 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: Platane/snk@master
+      - uses: manikeshmk/galaga-contribution-graph@main
         with:
-          github_user_name: MFlores01
-          outputs: |
-            dist/galaga-contribution-graph.svg?palette=github&game=galaga
-            dist/galaga-contribution-graph-dark.svg?palette=github-dark&game=galaga
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Move output
+        run: |
+          mkdir -p dist
+          cp ${{ github.action_path }}/../manikeshmk-galaga-contribution-graph/dist/galaga.svg dist/galaga-contribution-graph.svg || cp */dist/galaga.svg dist/galaga-contribution-graph.svg || find / -name "galaga.svg" 2>/dev/null | head -1 | xargs -I{} cp {} dist/galaga-contribution-graph.svg
+          cp dist/galaga-contribution-graph.svg dist/galaga-contribution-graph-dark.svg
+        shell: bash
 
       - uses: crazy-max/ghaction-github-pages@v4
         with:
