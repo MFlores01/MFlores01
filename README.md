@@ -7,3 +7,5 @@
 <br clear="both">
 
 ![GitHub Space Shooter](game.gif)
+
+![GitHub Stats Card](https://ghstats.dev/api/card?username=MFlores01&theme=kanagawa)
